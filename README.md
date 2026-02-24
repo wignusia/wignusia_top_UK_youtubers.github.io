@@ -73,7 +73,7 @@ To effectively answer our key questions, the dashboard will incorporate several 
 * **Scorecards** – For high-level "at a glance" KPIs (e.g., total subscribers, total views).
 * **Horizontal Bar Chart** – Ideal for ranking the top 10 channels and comparing performance.
 
-[dashboard_mockup.png](asset/images/dashboard_mockup.png)
+![dashboard_mockup.png](asset/images/dashboard_mockup.png)
 
 ## Tools
 
@@ -85,8 +85,9 @@ To effectively answer our key questions, the dashboard will incorporate several 
 | **Power BI** | Visualizing the data through interactive dashboards. |
 | **GitHub** | Project documentation hosting and version control. |
 | **Canva** | Designing the high-fidelity mockup of the dashboard. |
+| **Gemini AI** | Technical writing, code optimization, and documentation support. |
 
-
+----
 ## Development
 
 ### Pseudocode
@@ -100,6 +101,71 @@ To effectively answer our key questions, the dashboard will incorporate several 
 5. **Data Testing** – Run quality checks and validation scripts in **SQL**.
 6. **Data Visualization** – Build interactive dashboards in **Power BI**.
 7. **Insight Generation** – Analyze the visuals to generate findings and key takeaways.
-8. **Documentation** – Write the technical documentation and project commentary.
+8. **Documentation** – Write the technical documentation and project commentary
 9. **Deployment** – Publish the final project and documentation to **GitHub Pages**.
 
+------
+## Data Exploration Notes
+
+**Initial Observations & Observations:**
+
+* **Data Sufficiency** – The dataset contains at least 4 key columns required for the analysis, meaning no additional data from the client is needed at this stage.
+* **Format Issues** – Channel IDs in the first column are prefixed with an `@` symbol; these need to be cleaned to extract proper channel names.
+* **Language & Localization** – Some headers and cell values are in a foreign language. These need to be evaluated for relevance and translated or handled accordingly.
+* **Redundancy** – The dataset contains more information than required. Irrelevant columns will be removed to streamline the analysis.
+
+## Data Cleaning
+
+### Overview
+The aim is to refine the dataset to ensure it is structured, accurate, and ready for analysis. The cleaned data must be lean, containing only the essential information required to answer our business questions.
+
+### Constraints & Requirements
+The cleaned dataset should meet the following criteria:
+* **Relevance** – Only essential columns are retained.
+* **Data Typing** – All data types must be appropriate for their respective content.
+* **Data Integrity** – No column should contain null values; every record must be complete.
+
+**Dataset Summary:**
+| Property | Description |
+| :--- | :--- |
+| **Number of Rows** | 100 |
+| **Number of Columns** | 4 |
+
+### Expected Schema
+| Column Name | Data Type | Nullable |
+| :--- | :--- | :--- |
+| channel_name | VARCHAR | NO |
+| total_subscribers | INTEGER | NO |
+| total_views | INTEGER | NO |
+| total_videos | INTEGER | NO |
+
+### Cleaning Steps
+To shape the data into the desired format, the following steps will be executed:
+1. **Column Selection** – Filter out unnecessary columns and retain only the four required fields.
+2. **String Manipulation** – Extract clean YouTube channel names from the primary column (removing the `@` prefix and IDs).
+3. **Data Refinement** – Rename columns using clear, descriptive aliases for better readability in the final dashboard.
+
+## Data Transformation (SQL)
+
+To clean and shape the data, I developed the following SQL script. This creates a view that filters necessary columns, handles data types, and ensures data integrity by managing NULL values.
+
+```sql
+/*
+Data Cleaning Steps:
+1. Remove unnecessary columns by selecting only the required fields.
+2. Extract clean YouTube channel names from the source string.
+3. Handle NULL values in metrics using the COALESCE function to ensure calculation stability.
+4. Rename columns for better readability and alignment with project standards.
+*/
+
+CREATE VIEW view_top_youtube_poland_2024 AS
+SELECT 
+    -- Extracting name before the '@' symbol and casting it
+    CAST(SUBSTRING(NAME, 1, CHARINDEX('@', NAME) - 1) AS VARCHAR(100)) AS channel_name,
+    
+    -- Replacing NULLs with 0 to prevent errors in dashboard calculations
+    COALESCE(total_subscribers, 0) AS total_subscribers,
+    COALESCE(total_views, 0) AS total_views,
+    COALESCE(total_videos, 0) AS total_videos
+FROM 
+    top_youtube_poland_2024;
