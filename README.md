@@ -166,7 +166,7 @@ SELECT
     COALESCE(total_videos, 0) AS total_videos
 FROM 
     top_youtube_poland_2024;
-'''
+```
 #Testing
 
 | Check | Description | Status |
@@ -178,7 +178,8 @@ FROM
 | **Null Check** | No record should contain NULL values. | ✅ Passed |
 
 ##SQL query
-'''sql
+
+```sql
 --- 1.Row count check
 SELECT 
 	Count(*) no_of_rows
@@ -226,7 +227,8 @@ WHERE
 	 total_subscribers IS NULL
 	 OR total_views IS NULL
 	 OR total_videos IS NULL;
-'''
+```
+
 ##Output
 
 
