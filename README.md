@@ -166,7 +166,7 @@ SELECT
     COALESCE(total_videos, 0) AS total_videos
 FROM 
     top_youtube_poland_2024;
-
+'''
 #Testing
 
 | Check | Description | Status |
@@ -185,7 +185,6 @@ SELECT
 FROM 
 	view_top_youtube_poland_2024
 
-
 --- 2. Column count check 
 SELECT 
 	COUNT (*) as  column_count
@@ -194,9 +193,7 @@ FROM
 WHERE 
 	TABLE_NAME = 'view_top_youtube_poland_2024'
 
-
 --- 3. Data type check
-
 SELECT 
 	  COLUMN_NAME,
 	  DATA_TYPE
@@ -205,9 +202,7 @@ FROM
 WHERE	
 	TABLE_NAME = 'view_top_youtube_poland_2024'
 
-
 --- 4. Duplicate check
-
 SELECT 
 	channel_name,
 	COUNT(*)as duplica_check
@@ -218,9 +213,7 @@ GROUP BY
 HAVING 
 	COUNT(*) >1
 
-
 --- 5. null check
-
 SELECT 
 	COUNT(*) AS null_count,
 	CASE 
@@ -233,7 +226,7 @@ WHERE
 	 total_subscribers IS NULL
 	 OR total_views IS NULL
 	 OR total_videos IS NULL;
-
+'''
 ##Output
 
 
