@@ -134,7 +134,7 @@ The cleaned dataset should meet the following criteria:
 ### Expected Schema
 | Column Name | Data Type | Nullable |Changes|
 | :--- | :--- | :--- |:--- |
-| channel_name | VARCHAR | NO | <span style="color: #4B0082;"> Changed data type from VARCHAR to NVARCHAR to support Unicode characters</span>
+| channel_name | VARCHAR | NO | <span style="color: #4B0082;">Changed data type from VARCHAR to NVARCHAR to enable full Unicode support.</span> |
 | total_subscribers | INTEGER | NO | -|
 | total_views | INTEGER | NO | -|
 | total_videos | INTEGER | NO | -|
@@ -177,13 +177,7 @@ FROM
 | **Data Types** | `channel_name` must be a string; other metrics must be numeric. | ✅ Passed |
 | **Uniqueness** | Each record must be unique (no duplicates). | ✅ Passed |
 | **Null Check** | No record should contain NULL values. | ✅ Passed |
-| **Invidal chanle_name**|The channel_name column should not contain special characters such as '*', '?', '/', '!', '#'."		----(failed !!!) | ✅ Passed |
-
-Result:
-❌ Test failed – invalid characters were detected.
-Action Taken:
-Additional analysis was performed to identify affected records.  See this record in Exels see that the name channeli is in cyricla :  SEE ISSUE 
-
+| **Invidal chanle_name**|The channel_name column should not contain special characters such as '*', '?', '/', '!', '#' | ✅ Passed |
 
 
 ## SQL Query	
@@ -252,6 +246,30 @@ WHERE
 
 ## Output
 ![screenshots_SQL_data_quality_checks.png](asset/images/screenshots_SQL_data_quality_checks.png)
+
+# Data Type Issue: Unicode Support
+
+### Problem Description
+During validation of the `channel_name` column, several records containing **Cyrillic characters** were identified as incorrectly encoded:
+
+* Софунья Шалунья
+* Готовим дома
+
+**Issue:** Cyrillic characters were not handled correctly because the column used the `VARCHAR` data type, which lacks native support for various non-Latin character sets.
+
+---
+
+### Root Cause
+The `channel_name` column was defined as **VARCHAR**. This data type is typically limited to a specific code page and does not provide full Unicode compatibility.
+
+### Business Decision
+It was confirmed that the dataset must support internationalization and non-Latin characters to maintain data integrity across different regions.
+
+### Solution Implemented
+<span style="color: #4B0082;">**Changed data type from VARCHAR to NVARCHAR to enable full Unicode support.**</span>
+
+### Result
+Multilingual channel names are now stored, processed, and displayed correctly without data loss or corruption.
 
 
 # Visualization
