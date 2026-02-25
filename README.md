@@ -132,12 +132,12 @@ The cleaned dataset should meet the following criteria:
 | **Number of Columns** | 4 |
 
 ### Expected Schema
-| Column Name | Data Type | Nullable |
-| :--- | :--- | :--- |
-| channel_name | VARCHAR | NO |
-| total_subscribers | INTEGER | NO |
-| total_views | INTEGER | NO |
-| total_videos | INTEGER | NO |
+| Column Name | Data Type | Nullable |Changes|
+| :--- | :--- | :--- |:--- |
+| channel_name | VARCHAR | NO | <span style="color: #4B0082;"> Changed data type from VARCHAR to NVARCHAR to support Unicode characters</span>
+| total_subscribers | INTEGER | NO | -|
+| total_views | INTEGER | NO | -|
+| total_videos | INTEGER | NO | -|
 
 ### Cleaning Steps
 To shape the data into the desired format, the following steps will be executed:
@@ -156,11 +156,12 @@ Data Cleaning Steps:
 2. Extract clean YouTube channel names from the source string.
 3. Handle NULL values in metrics using the COALESCE function to ensure calculation stability.
 4. Rename columns for better readability and alignment with project standards.
+5. Updated the data type of the channel_name column from VARCHAR to NVARCHAR to support Unicode (Cyrillic) characters.
 */
 
 CREATE VIEW view_top_youtube_poland_2024 AS
 SELECT 
-    CAST(SUBSTRING(NAME, 1, CHARINDEX('@', NAME) - 1) AS VARCHAR(100)) AS channel_name,
+    CAST(SUBSTRING(NAME, 1, CHARINDEX('@', NAME) - 1) AS NVARCHAR(100)) AS channel_name,
     COALESCE(total_subscribers, 0) AS total_subscribers,
     COALESCE(total_views, 0) AS total_views,
     COALESCE(total_videos, 0) AS total_videos
@@ -176,6 +177,14 @@ FROM
 | **Data Types** | `channel_name` must be a string; other metrics must be numeric. | ✅ Passed |
 | **Uniqueness** | Each record must be unique (no duplicates). | ✅ Passed |
 | **Null Check** | No record should contain NULL values. | ✅ Passed |
+| **Invidal chanle_name**|The channel_name column should not contain special characters such as '*', '?', '/', '!', '#'."		----(failed !!!) | ✅ Passed |
+
+Result:
+❌ Test failed – invalid characters were detected.
+Action Taken:
+Additional analysis was performed to identify affected records.  See this record in Exels see that the name channeli is in cyricla :  SEE ISSUE 
+
+
 
 ## SQL Query	
 
@@ -227,6 +236,18 @@ WHERE
 	 total_subscribers IS NULL
 	 OR total_views IS NULL
 	 OR total_videos IS NULL;
+
+--- 6. invidal chanle_name  check 
+SELECT 
+	channel_name
+FROM 
+	view_top_youtube_poland_2024
+WHERE 
+		channel_name LIKE '%?%' or
+		channel_name LIKE '%!%' or
+		channel_name LIKE '%/%' or
+		channel_name LIKE '%*%' or
+		channel_name LIKE '%#%' 
 ```
 
 ## Output
