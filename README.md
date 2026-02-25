@@ -265,6 +265,8 @@ The initial merge method used an **Inner Join**, which excluded rows where API d
 # This ensures we keep all original rows even if API data is missing
 merged_df = pd.merge(df, stats_df, on='channel_id', how='left')
 ```
+![api_merge_success_100rows.png](asset/images/api_merge_success_100rows.png)
+
 ### 2. Issue: Unicode Support (Cyrillic Characters)
 
 **Problem:**
@@ -278,8 +280,6 @@ The `channel_name` column used `VARCHAR`, which lacks full Unicode compatibility
 
 **Result:**
 Multilingual channel names are now stored and displayed correctly.
-
-![api_merge_success_100rows.png](asset/images/api_merge_success_100rows.png)
 
 ![cyrillic_rendering_issue_(varchar_to_nvarchar).png](asset/images/cyrillic_rendering_issue_(varchar_to_nvarchar).png)
 
