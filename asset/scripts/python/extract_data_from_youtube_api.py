@@ -29,11 +29,11 @@ def get_channel_stats(youtube, channel_id):
             )
             return data
         else:
-            print(f"Brak danych dla ID: {channel_id}")
+            print(f"Missing values for ID: {channel_id}")
             return None
 
     except Exception as e:
-        print(f"Wystąpił błąd przy kanale {channel_id}: {e}")
+        print(f"Channel processing error {channel_id}: {e}")
         return None
 
 
@@ -70,11 +70,12 @@ merged_df = pd.merge(df, stats_df, on='channel_id', how='left')
 
 # Save the final merged dataset to a new CSV file
 # merged_df is the final version of the enriched dataset
-merged_df.to_csv('updated_youtube_polandv3.csv', index=False)
+merged_df.to_csv('updated_youtube_poland.csv', index=False)
 
 print(f"Processing complete. Data saved to: {merged_df}")
 print("-" * 30)
 print(f"\n Processing complete!")
 print(f"Total channels processed: {len(channel_ids)}")
 print(f"Data successfully exported to: {merged_df}")
+
 print("-" * 30)
