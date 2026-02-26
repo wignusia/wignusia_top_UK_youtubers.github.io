@@ -359,11 +359,41 @@ VAR viewsPerSubscriber = DIVIDE(sumOfTotalViews, sumOfTotalSubscribers, BLANK())
 RETURN viewsPerSubscriber
 ```
 
+----
+ # Analysis
+## Findings
+What did we find?
+For this analysis, we're going to focus on the questions below to get the information we need for our marketing client/boss :) 
+
+Here are the key questions we need to answer for our marketing client:
+
+1.Who are the top 10 YouTubers with the most subscribers?
+2.Which 3 channels have uploaded the most videos?
+3.Which 3 channels have the most views?
+4.Which 3 channels have the highest average views per video?
+5.Which 3 channels have the highest views per subscriber ratio?
+6.Which 3 channels have the highest subscriber engagement rate per video uploaded?
 
 
+ ### 1. Who are the top 10 YouTubers with the most subscribers?
 
+| Rank | Channel Name                         | Subscribers |
+|:----:|:-------------------------------------|------------:|
+| 1    | Bazylland - Tractors & Excavators    | 7 420 000   |
+| 2    | WB Kids International                | 6 870 000   |
+| 3    | reZigiusz                            | 5 400 000   |
+| 4    | Blowek                               | 5 390 000   |
+| 5    | Софунья Шалунья                      | 4 050 000   |
+| 6    | Step Records                         | 4 040 000   |
+| 7    | Boomerang Polska                     | 3 570 000   |
+| 8    | SBM Label                            | 3 460 000   |
+| 9    | AbstrachujeTV                        | 3 370 000   |
+| 10   | IsAmU                                | 2 850 000   |
 
+### 2. Which 3 channels have uploaded the most videos?
 
-
-
-
+| Rank | Channel Name | Videos Uploaded |
+|:----:|:-------------|----------------:|
+| 1    | tvnpl        | 20163           |
+| 2    | TVN Series   | 13589           |
+| 3    | Polsat       | 12077           |
