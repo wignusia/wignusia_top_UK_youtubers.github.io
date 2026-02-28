@@ -423,6 +423,105 @@ Here are the key questions we need to answer for our marketing client:
 
 ### 6. Which 3 channels have the highest subscriber engagement rate per video uploaded?
 
+| Rank | Channel Name | Subscriber Engagement Rate |
+| :--- | :--- | :--- |
+| 1 | Diana Milkanova | 640000 |
+| 2 | DISCO MAREK | 354285 |
+| 3 | JuzzyGamePlay | 111428 |
+
+##  Notes 📝
+
+For this analysis, we will prioritize metrics that are critical for generating the expected **ROI (Return on Investment)** for our marketing client. We will focus on identifying YouTube channels with the following attributes:
+
+* **Most Subscribers:** To ensure broad brand reach.
+* **Total Views:** To measure content resonance and audience retention.
+* **Videos Uploaded:** To evaluate the consistency and activity level of the creator.
+
+## 📊 Validation:
+## 1. Youtubers with the most subscribers
+### Campaign Overview 
+* **Product Placement Idea:** Consumer Electronics / Gadget
+* **Conversion Rate:** 2% (0.02)
+* **Product Cost:** 8.50 PLN
+* **Campaign Cost (One-time fee):** 40,000.00 PLN
+
+**Calculation breakdown:**
+
+### 1. Bazylland - Tractors & Excavators
+* **Average views per video:** 3.44M
+* **Potential units sold:** 3,440,000 * 2% = **68,800 units**
+* **Potential revenue:** 68,800 * 8.5 PLN = **584,800 PLN**
+* **Net profit:** 584,800 - 40,000 = **544,800 PLN**
+
+### 2. WB Kids International
+* **Average views per video:** 1.54M
+* **Potential units sold:** 1,540,000 * 2% = **30,800 units**
+* **Potential revenue:** 30,800 * 8.5 PLN = **261,800 PLN**
+* **Net profit:** 261,800 - 40,000 = **221,800 PLN**
+
+### 3. reZigiusz
+* **Average views per video:** 0.875M
+* **Potential units sold:** 870,150, * 2% = **17,400 units**
+* **Potential revenue:** 17,400 * 8.5 PLN = **147,900 PLN**
+* **Net profit:** 147,90 - 40,000 = **107,900 PLN**
+
+---
+
+### 🏆 Final Verdict ?????
+Based on the subscriber-led analysis, **Bazylland - Tractors & Excavators** is the most profitable option, offering a potential net profit of **544,800 PLN** per video.
+
+###  SQL query
+
+```SQL
+/* 
+
+# 1. Define variables 
+# 2. Create a CTE that rounds the average views per video 
+# 3. Select the column you need and create calculated columns from existing ones 
+# 4. Filter results by Youtube channels
+# 5. Sort results by net profits (from highest to lowest)
+
+*/
+
+
+-- 1. 
+DECLARE @conversionRate FLOAT = 0.02;		-- The conversion rate @ 2%
+DECLARE @productCost FLOAT = 8.5;			-- The product cost @ PLN 8.5
+DECLARE @campaignCost FLOAT = 40000.0;		-- The campaign cost @  PLN 40,000	
+
+
+-- 2.  
+WITH ChannelData AS (
+    SELECT 
+        channel_name,
+        total_views,
+        total_videos,
+        ROUND(CAST(total_views AS FLOAT) / NULLIF(total_videos,0), -4) AS rounded_avg_views_per_video
+    FROM 
+        view_top_youtube_poland_2024
+)
+
+-- 3. 
+SELECT 
+    channel_name,
+    rounded_avg_views_per_video,
+    (rounded_avg_views_per_video * @conversionRate) AS potential_units_sold_per_video,
+    (rounded_avg_views_per_video * @conversionRate * @productCost) AS potential_revenue_per_video,
+    ((rounded_avg_views_per_video * @conversionRate * @productCost) - @campaignCost) AS net_profit
+FROM 
+    ChannelData
+
+
+-- 4. 
+WHERE 
+    channel_name in ('Bazylland - Tractors & Excavators', 'WB Kids International', 'reZigiusz' )
+ 
+
+-- 5.  
+ORDER BY
+	     net_profit DESC
+
+```
 
 🏗️ Under Construction:
 
