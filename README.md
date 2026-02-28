@@ -430,7 +430,7 @@ Here are the key questions we need to answer for our marketing client:
 | 2 | DISCO MAREK | 354285 |
 | 3 | JuzzyGamePlay | 111428 |
 
-##  Notes 📝
+##  Notes 
 
 For this analysis, we will prioritize metrics that are critical for generating the expected **ROI (Return on Investment)** for our marketing client. We will focus on identifying YouTube channels with the following attributes:
 
@@ -440,7 +440,7 @@ For this analysis, we will prioritize metrics that are critical for generating t
 * 
 ---
 
-## 📊 Validation:
+##  Validation:
 ## 1. Youtubers with the most subscribers
 ### Campaign Overview 
 * **Product Placement Idea:** Consumer Electronics / Gadget
@@ -468,7 +468,7 @@ For this analysis, we will prioritize metrics that are critical for generating t
 * **Potential revenue:** 17,400 * 8.5 PLN = **147,900 PLN**
 * **Net profit:** 147,900 - 40,000 = **107,900 PLN**
 
-###  Recommendations 💡
+###  Recommendations 
 Based on the subscriber-led analysis, **Bazylland - Tractors & Excavators** is the most profitable option, offering a potential net profit of **544,800 PLN** per video.
 
 ###  SQL query
@@ -556,7 +556,7 @@ ORDER BY
 * **Net profit:** 15,300 - 45,000 = **-29,700 PLN (Loss)**
 
 
-###  Recommendations 💡
+###  Recommendations 
 All channels in this category show a **negative ROI**. However, **TVN** and **Polsat** remain the most consistent uploaders. For these creators, a cross-media campaign (TV + YouTube) is recommended to build long-term reach rather than immediate sales profit. 
 **Note:** 4th and 5th ranked channels are also unprofitable and lack significant performance in other metrics.
 
@@ -649,7 +649,7 @@ ORDER BY
 * **Potential revenue:** 4,200 * 8.5 PLN = **35,700 PLN**
 * **Net profit:** 35,700 - 80,000 = **-44,300 PLN (Loss)**
 
-###  Recommendations 💡
+###  Recommendations 
 
 "Śpiewające Brzdące" has top ROI but wrong target audience (kids). "Bazylland" is the best strategic fit with positive ROI. Recommend a package deal for the top 3 channels to maximize collective returns and establish a long-term partnership.
 
@@ -707,7 +707,7 @@ ORDER BY
 
 ---
 
-## 📂 Resources & Further Analysis
+## Resources & Further Analysis
 
 For a more detailed breakdown and raw data, you can explore the following resources:
 
@@ -758,7 +758,7 @@ Based on our analysis, we believe the best channel to advance a long-term partne
 
 **Have a great day! / Miłego dnia!** 😊
 
-### 💡 Project Limitations & Real-Life Considerations
+###  Project Limitations & Real-Life Considerations
 I am aware that this is a simplified analysis. In a real-world marketing scenario, a more robust ROI model would be required, taking into account factors such as:
 
 * **Audience Mismatch:** Not all subscribers of a channel (e.g., kids' channels) are the target buyers for every product.
