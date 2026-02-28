@@ -436,6 +436,8 @@ For this analysis, we will prioritize metrics that are critical for generating t
 * **Most Subscribers:** To ensure broad brand reach.
 * **Total Views:** To measure content resonance and audience retention.
 * **Videos Uploaded:** To evaluate the consistency and activity level of the creator.
+* 
+---
 
 ## 📊 Validation:
 ## 1. Youtubers with the most subscribers
@@ -465,9 +467,7 @@ For this analysis, we will prioritize metrics that are critical for generating t
 * **Potential revenue:** 17,400 * 8.5 PLN = **147,900 PLN**
 * **Net profit:** 147,90 - 40,000 = **107,900 PLN**
 
----
-
-### 🏆 Final Verdict ?????
+### ⚠️ Recommendations
 Based on the subscriber-led analysis, **Bazylland - Tractors & Excavators** is the most profitable option, offering a potential net profit of **544,800 PLN** per video.
 
 ###  SQL query
@@ -483,12 +483,10 @@ Based on the subscriber-led analysis, **Bazylland - Tractors & Excavators** is t
 
 */
 
-
 -- 1. 
 DECLARE @conversionRate FLOAT = 0.02;		-- The conversion rate @ 2%
 DECLARE @productCost FLOAT = 8.5;			-- The product cost @ PLN 8.5
 DECLARE @campaignCost FLOAT = 40000.0;		-- The campaign cost @  PLN 40,000	
-
 
 -- 2.  
 WITH ChannelData AS (
@@ -511,17 +509,103 @@ SELECT
 FROM 
     ChannelData
 
-
 -- 4. 
 WHERE 
     channel_name in ('Bazylland - Tractors & Excavators', 'WB Kids International', 'reZigiusz' )
- 
 
 -- 5.  
 ORDER BY
 	     net_profit DESC
 
 ```
+### Output
+![youtubers_with_the_most_subs.png](asset/images/youtubers_with_the_most_subs.png)
+
+## 2. Youtubers with the most videos uploaded
+### Calculation breakdown
+
+**Campaign Overview:**
+* **Campaign Idea:** 10-video series sponsorship
+* **Conversion Rate:** 2% (0.02)
+* **Product Cost:** 8.50 PLN
+* **Campaign Cost:** 45,000.00 PLN (4,500 PLN per video)
+
+### a. tvnpl / Polsat
+* **Average views per video:** 210,000
+* **Potential units sold:** 210,000 * 2% = **4,200 units**
+* **Potential revenue:** 4,200 * 8.5 PLN = **35,700 PLN**
+* **Net profit:** 35,700 - 45,000 = **-9,300 PLN (Loss)**
+
+### b. TVN Series
+* **Average views per video:** 130,000
+* **Potential units sold:** 130,000 * 2% = **2,600 units**
+* **Potential revenue:** 2,600 * 8.5 PLN = **22,100 PLN**
+* **Net profit:** 22,100 - 45,000 = **-22,900 PLN (Loss)**
+
+### c. JASNA STRONA
+* **Average views per video:** 110,000
+* **Potential units sold:** 110,000 * 2% = **2,200 units**
+* **Potential revenue:** 2,200 * 8.5 PLN = **18,700 PLN**
+* **Net profit:** 18,700 - 45,000 = **-26,300 PLN (Loss)**
+
+### d. Admiros
+* **Average views per video:** 90,000
+* **Potential units sold:** 90,000 * 2% = **1,800 units**
+* **Potential revenue:** 1,800 * 8.5 PLN = **15,300 PLN**
+* **Net profit:** 15,300 - 45,000 = **-29,700 PLN (Loss)**
+
+---
+
+### ⚠️ Recommendations
+All channels in this category show a **negative ROI**. However, **TVN** and **Polsat** remain the most consistent uploaders. For these creators, a cross-media campaign (TV + YouTube) is recommended to build long-term reach rather than immediate sales profit. 
+**Note:** 4th and 5th ranked channels are also unprofitable and lack significant performance in other metrics.
+```SQL
+/* 
+# 1. Define variables
+# 2. Create a CTE that rounds the average views per video
+# 3. Select the columns you need and create calculated columns from existing ones
+# 4. Filter results by YouTube channels
+# 5. Sort results by net profits (from highest to lowest)
+*/
+
+-- 1.
+DECLARE @conversionRate FLOAT = 0.02;           -- The conversion rate @ 2%
+DECLARE @productCost FLOAT = 8.5;               -- The product cost @ PLN 8.5 
+DECLARE @campaignCostPerVideo FLOAT = 4500.0;   -- The campaign cost per video @ PLN 4,500
+DECLARE @numberOfVideos INT = 10;               -- The number of videos (10)
+
+-- 2.
+WITH ChannelData AS (
+    SELECT
+        channel_name,
+        total_views,
+        total_videos,
+        ROUND((CAST(total_views AS FLOAT) / total_videos), -4) AS rounded_avg_views_per_video
+    FROM
+        view_top_youtube_poland_2024
+)
+
+-- 3.
+SELECT
+    channel_name,
+    rounded_avg_views_per_video,
+    (rounded_avg_views_per_video * @conversionRate) AS potential_units_sold_per_video,
+    (rounded_avg_views_per_video * @conversionRate * @productCost) AS potential_revenue_per_video,
+    ((rounded_avg_views_per_video * @conversionRate * @productCost) - (@campaignCostPerVideo * @numberOfVideos)) AS net_profit
+FROM
+    ChannelData
+
+-- 4.
+WHERE
+    channel_name IN ('tvnpl', 'TVN Series','Polsat','JASNA STRONA','Admiros')
+
+-- 5.
+ORDER BY
+    net_profit DESC;
+```
+### Output
+![youtubers_with_the_most_videos.png](asset/images/youtubers_with_the_most_videos.png)
+
 
 🏗️ Under Construction:
 
