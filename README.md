@@ -558,6 +558,9 @@ ORDER BY
 ### ⚠️ Recommendations
 All channels in this category show a **negative ROI**. However, **TVN** and **Polsat** remain the most consistent uploaders. For these creators, a cross-media campaign (TV + YouTube) is recommended to build long-term reach rather than immediate sales profit. 
 **Note:** 4th and 5th ranked channels are also unprofitable and lack significant performance in other metrics.
+
+###  SQL query
+
 ```SQL
 /* 
 # 1. Define variables
@@ -651,6 +654,7 @@ ORDER BY
 
 For Tvn Recommend a cross-media campaign (TV + YouTube) to build long-term reach.
 
+###  SQL query
 ```SQL
 /* 
 
@@ -666,7 +670,6 @@ For Tvn Recommend a cross-media campaign (TV + YouTube) to build long-term reach
 DECLARE @conversionRate FLOAT = 0.02;		-- The conversion rate @ 2%
 DECLARE @productCost FLOAT = 8.5;			-- The product cost @ PLN 8.5
 DECLARE @campaignCost FLOAT = 80000.0;		-- The campaign cost @  PLN 40,000	
-
 
 -- 2.  
 WITH ChannelData AS (
