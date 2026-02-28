@@ -601,9 +601,10 @@ WHERE
 -- 5.
 ORDER BY
     net_profit DESC;
+```
+
 ### Output
 ![youtubers_with_the_most_videos.png](asset/images/youtubers_with_the_most_videos.png)
-
 
 ## 3. Youtubers with the most views
 ### Calculation breakdown
