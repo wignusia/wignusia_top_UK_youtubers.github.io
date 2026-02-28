@@ -700,16 +700,64 @@ WHERE
 ORDER BY
 	     net_profit DESC
 ```
-
 ### Output
 
 ![youtubers_with_the_most_views.png](asset/images/youtubers_with_the_most_views.png)
 
+---
+
+## 📂 Resources & Further Analysis
+
+For a more detailed breakdown and raw data, you can explore the following resources:
+
+* **[ Excel Workbook](LINK_DO_TWOJEGO_FOLDERU)** – Contains all raw YouTube metrics and manual cleaning steps.
+* **[SQL Scripts Folder](LINK_DO_PLIKU_SQL)** – Includes the queries used to extract and transform the data.
+
+> **Note:** The Excel file provides a more granular view of the engagement rates and ROI projections.
+
 # Discovery
 
-🏗️ Under Construction:
+## What did we learn?
+We discovered that:
+* **Bazylland - Tractors & Excavators**, **WB Kids International**, and **reZigiusz** are the channels with the most subscribers in Poland.
+* **tvnpl**, **TVN Series**, and **Polsat** are the channels with the most videos uploaded, showing massive consistency but lower individual video reach.
+* **SBM Label**, **Step Records**, and **Śpiewające Brzdące** are the channels with the highest total views, dominating the music and kids' entertainment sectors.
+* **Entertainment and music channels** (like SBM Label or Sobel) generate the highest engagement and average views per video, making them ideal for high-visibility campaigns.
+* **Traditional media outlets** (TVN, Polsat) show a negative ROI for simple product placements in our model due to high volume but lower average views per video.
 
-"I am currently enhancing this project by integrating advanced Power BI techniques, refined Excel configurations, and Python scripts for automated data processing. My focus is on elevating the visual storytelling and ensuring the technical architecture is robust and scalable."
-😀😀😀
+## Recommendations
+**What do you recommend based on the insights gathered?**
+* **Bazylland - Tractors & Excavators** is the best channel to collaborate with for consumer electronics/gadgets to maximize immediate profit, as it has the highest subscriber count and a very strong net profit projection (**544,800 PLN**).
+* Although **tvnpl** and **Polsat** are regular publishers, collaborating with them on a per-video basis is **not recommended** with current budget caps, as the potential ROI is currently negative. They are better suited for long-term brand awareness rather than direct sales.
+* **Śpiewające Brzdące** is the best YouTuber to collaborate with for maximizing reach (highest views per subscriber), provided the product fits the "parent/child" demographic to maintain the expected conversion rate.
+* The **top 3 channels** to form collaborations with for the best balance of reach and profit are **Bazylland**, **SBM Label**, and **reZigiusz**, as they consistently attract high engagement and show positive ROI in our projections.
+
+## Potential ROI
+**What ROI do we expect if we take this course of action?**
+* Setting up a collaboration with **Bazylland** could generate a net profit of **544,800 PLN** per video.
+* A partnership with **Śpiewające Brzdące** could see a potential net profit of **848,200 PLN**, assuming a successful demographic fit.
+* An influencer marketing campaign with **SBM Label** is expected to bring a net profit of approximately **441,900 PLN** per video.
+* Campaigns with **reZigiusz** offer a safer, high-engagement alternative with a projected net profit of **107,900 PLN**.
+
+## Action Plan
+**What course of action should we take and why?**
+Based on our analysis, we believe the best channel to advance a long-term partnership deal with to promote the client’s products is the **Bazylland - Tractors & Excavators** channel.
+
+**What steps do we take to implement the recommended decisions effectively?**
+1. **Reach out** to the management teams behind each of these channels, starting with **Bazylland**.
+2. **Negotiate contracts** within the budgets allocated (40,000 PLN - 80,000 PLN) to each marketing campaign.
+3. **Kick off the campaigns** and track each of their performances against the 2% conversion KPI.
+4. **Review performance**, gather insights, and optimize based on feedback from converted customers and each channel’s audience before expanding to other creators.
+
+
+---
+
+# The End
+**Thank you** for taking the time to view and read this project! I hope the insights gathered are valuable.
+
+**Have a great day! / Miłego dnia!** 😊
+
+---
+**Inspiration:** This project was inspired by the [sdw-online/top_uk_youtubers_2024] (https://github.com/sdw-online/top_uk_youtubers_2024/tree/main)study.
 
 
